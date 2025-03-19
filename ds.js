@@ -102,11 +102,5 @@ class Custoarray{
     }
 }
 
-// const sll = new linkedlist();
-// sll.append(5);
-// sll.append(6);
-// sll.append(4);
-// sll.remove_by_data(8)
-// // sll.search(7);
-// sll.display();
+
 
