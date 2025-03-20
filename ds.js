@@ -77,7 +77,7 @@ export class linkedlist{
     }
 }
 
-class Custoarray{
+class Customarray{
     constructor(size){
         this.size = size;
         this.arr = Array(size).fill(null);
