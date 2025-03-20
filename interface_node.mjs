@@ -1,4 +1,5 @@
-const prompet = require  ('prompt-synce')();
+import promptSync from "prompt-sync";
+const prompet = promptSync();
 export class Interface{
     constructor(Logic){
         this.Logic = Logic
@@ -27,6 +28,6 @@ export class Interface{
 
     // }
     run(){
-        this.menu
+        this.menu()
     }
 }
