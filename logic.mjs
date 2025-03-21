@@ -8,4 +8,7 @@ export class Logic{
     display_item(){
         return this.data_base.display_item()
     }
+    search_by_item_code(item_code){
+        return this.data_base.search_by_item_code(item_code)
+    }
 }

@@ -6,13 +6,15 @@ export class Interface{
     }
     menu(){
         while(true){
-            let menu = (prompet("___menu__\n1.input item in system\n2.display\n"));
+            let menu = (prompet("___menu__\n1.input item in system\n2.display\n3.search by item code"));
             if (menu === '1'){
                 this.get_item_info();
-                
             }
-            if (menu === '2'){
+            else if (menu === '2'){
                 this.display_item();
+            }
+            else if (menu ==='3'){
+                this.search_by_item_code()
             }
         }
     }
@@ -34,11 +36,17 @@ export class Interface{
             
         }
     }
+    
     display_item(){
        const a =this.Logic.display_item();
        console.log(a);
        
     
+    }
+    search_by_item_code(){
+        const item_code = prompet('enter item code to search:');
+        const a = this.Logic.search_by_item_code(item_code);
+        console.log(a);
     }
     run(){
         this.menu()

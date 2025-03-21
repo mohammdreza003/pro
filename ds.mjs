@@ -57,7 +57,7 @@ export class linkedlist{
         let temp = this.head;
        
         while (temp !== null ) {
-            if (data ===temp.data){
+            if (data ===temp.data.item_code){
                 return console.log(temp.data);
             }
             temp =temp.next; 
@@ -79,10 +79,11 @@ export class linkedlist{
         return result + "null"+ "\n"
     }
 }
-const sll = new linkedlist();
-sll.append(new Item_information(1,1,1,1,1,1,"f"));
-sll.append(new Item_information(1,1,1,1,1,1,"f"));
-console.log(sll.display());
+// const sll = new linkedlist();
+// sll.append(new Item_information(1,1,1,1,1,1,"f"));
+// sll.append(new Item_information(1,1,1,1,1,1,"f"));
+// // console.log(sll.search(1));
+// console.log(sll.display());
 // class Customarray{
 //     constructor(size){
 //         this.size = size;

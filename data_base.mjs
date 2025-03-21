@@ -11,5 +11,8 @@ export class Data_base{
     display_item(){
         return this.sll_item.display()
     }
+    search_by_item_code(item_code){
+        return this.sll_item.search(item_code);
+    }
 
 }
