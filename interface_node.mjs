@@ -21,12 +21,12 @@ export class Interface{
         const delivery_date = prompet('enter delivery data;')
         const ship_cost = prompet('enter shiping cost:');
         const category = prompet('enter category(f,c,o):')
-
+        this.insert_item_info(item_code,item_wight,share_code,reg_time,delivery_date,ship_cost,category)
 
     }
-    // insert_item_info(){
-
-    // }
+    insert_item_info(item_code,item_wight,share_code,reg_time,delivery_date,ship_cost,category){
+        this.Logic.insert_item_info(item_code,item_wight,share_code,reg_time,delivery_date,ship_cost,category)
+    }
     run(){
         this.menu()
     }
