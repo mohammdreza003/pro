@@ -6,10 +6,13 @@ export class Interface{
     }
     menu(){
         while(true){
-            let menu = (prompet("___menu__\n1.input item in system\n"));
+            let menu = (prompet("___menu__\n1.input item in system\n2.display\n"));
             if (menu === '1'){
                 this.get_item_info();
-                break
+                
+            }
+            if (menu === '2'){
+                this.display_item();
             }
         }
     }
@@ -25,7 +28,17 @@ export class Interface{
 
     }
     insert_item_info(item_code,item_wight,share_code,reg_time,delivery_date,ship_cost,category){
-        this.Logic.insert_item_info(item_code,item_wight,share_code,reg_time,delivery_date,ship_cost,category)
+        const s = this.Logic.insert_item_info(item_code,item_wight,share_code,reg_time,delivery_date,ship_cost,category);
+        if (s == true){
+            console.log("seccesful.");
+            
+        }
+    }
+    display_item(){
+       const a =this.Logic.display_item();
+       console.log(a);
+       
+    
     }
     run(){
         this.menu()

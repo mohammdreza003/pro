@@ -1,3 +1,4 @@
+import { Item_information } from "./information_node.mjs";
 export class Node{
     constructor(data){
         this. data = data ;
@@ -67,40 +68,45 @@ export class linkedlist{
     }
     display(){
         let temp = this.head;
+        let result = "";
         while(temp !== null){
             // console.log(temp.data + '->');
-            process.stdout.write(temp.data + ' -> ');
+            result += "\n\n"+temp.data.tostring() + " -> ";
             // console.log(temp)
             temp = temp .next;
 
         }
+        return result + "null"+ "\n"
     }
 }
-
-class Customarray{
-    constructor(size){
-        this.size = size;
-        this.arr = Array(size).fill(null);
-        this.count = 0;
-        this.i = 0;
+const sll = new linkedlist();
+sll.append(new Item_information(1,1,1,1,1,1,"f"));
+sll.append(new Item_information(1,1,1,1,1,1,"f"));
+console.log(sll.display());
+// class Customarray{
+//     constructor(size){
+//         this.size = size;
+//         this.arr = Array(size).fill(null);
+//         this.count = 0;
+//         this.i = 0;
         
-    }
-    insert(data){
-        if (this.count<this.size){
-            this.arr[this.count] = data;
-            this.count+=1;
-        }
-        else{
-            return;
-        }
-    }
-    display(){
-        for(let i=0;i<this.count;i++){
-            process.stdout.write(this.arr[i] + '->');
-        }
-        return;
-    }
-}
+//     }
+//     insert(data){
+//         if (this.count<this.size){
+//             this.arr[this.count] = data;
+//             this.count+=1;
+//         }
+//         else{
+//             return;
+//         }
+//     }
+//     display(){
+//         for(let i=0;i<this.count;i++){
+//             process.stdout.write(this.arr[i] + '->');
+//         }
+//         return;
+//     }
+// }
 
 
 
