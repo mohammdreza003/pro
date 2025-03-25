@@ -6,7 +6,7 @@ export class Interface{
     }
     menu(){
         while(true){
-            let menu = (prompet("___menu__\n1.input item in system\n2.display\n3.search by item code"));
+            let menu = (prompet("___menu__\n1.input item in system\n2.display\n3.search by item code\n"));
             if (menu === '1'){
                 this.get_item_info();
             }
