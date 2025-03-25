@@ -13,16 +13,16 @@ export class linkedlist{
         
     }
 
-     append(data){
-        const node = new Node(data)
-        if (this.head === null){
-            this.head = node;
-            this.end = node;
-        } else {
-            this.end.next = node;
-            this.end = node;
-            
-        }
+    append(data){
+    const node = new Node(data)
+    if (this.head === null){
+        this.head = node;
+        this.end = node;
+    } else {
+        this.end.next = node;
+        this.end = node;
+        
+    }
     }
 
     remove_first(){
