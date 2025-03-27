@@ -6,7 +6,7 @@ export class Interface{
     }
     menu(){
         while(true){
-            let menu = (prompet("___menu__\n1.input item in system\n2.display\n3.search by item code\n4.exit\n"));
+            let menu = (prompet("___menu__\n1.input item in system\n2.display\n3.search by item code\n4.insert delivery\n5.exit\n"));
             if (menu === '1'){
                 this.get_item_info();
             }
@@ -17,6 +17,9 @@ export class Interface{
                 this.search_by_item_code()
             }
             else if (menu === '4'){
+                this.insert_delivery()
+            }
+            else if (menu === '5'){
                 process.exit(1);
             }
         }
@@ -51,6 +54,10 @@ export class Interface{
         const a = this.Logic.search_by_item_code(item_code);
         console.log(a);
     }
+    insert_delivery(){
+        
+    }
+
     run(){
         this.menu()
     }
