@@ -11,4 +11,10 @@ export class Logic{
     search_by_item_code(item_code){
         return this.data_base.search_by_item_code(item_code)
     }
+    insert_delivery_info(delivery_code,delivery_date,delivery_time,delivery_address,item_code){
+        return this.data_base.insert_delivery_info(delivery_code,delivery_date,delivery_time,delivery_address,item_code);
+    }
+    display_delivery(){
+        return this.data_base.display_delivery()
+    }
 }

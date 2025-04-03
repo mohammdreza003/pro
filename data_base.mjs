@@ -2,10 +2,13 @@
 import { promises as fs } from 'fs';
 import { linkedlist } from "./ds.mjs"
 import { Item_information } from "./information_node.mjs";
+import { Delivery_inf_node } from './delivery_information.mjs';
 export class Data_base{
     constructor(){
         // this.filePath = '/home/mohammadreza/data structure/project1/test_files/delivered_parcel.txt';
         this.sll_item = new linkedlist();
+        this.sll_delivery = new linkedlist();
+        this.delivery_code = 0;
     }
     insert_item_file(item){
         this.sll_item.append(item);
@@ -45,13 +48,20 @@ export class Data_base{
                     this.insert_item_file(item);
                 } 
             });
-    
-            console.log(this.display_item()); 
-    
         } catch (err) {
             console.error(`Error reading file: ${err}`);
         }
     }
+    insert_delivery_info(delivery_code,delivery_date,delivery_time,delivery_address,item_code){
+        this.delivery_code =+1;
+        const item = new Delivery_inf_node(delivery_code,delivery_date,delivery_time,delivery_address,item_code , delivery_code)
+        this.sll_delivery.append(item);
+        return true;
+    }
+    display_delivery(){
+        return this.sll_delivery.display()
+    }
+
     
     
     

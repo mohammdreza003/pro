@@ -6,19 +6,55 @@ export class Interface{
     }
     menu(){
         while(true){
-            let menu = (prompet("___menu__\n1.input item in system\n2.display\n3.search by item code\n4.exit\n"));
+            let menu = (prompet("___menu__ \n 1.item manager\n 2.delivery manager\n 3.exit\n"));
             if (menu === '1'){
-                this.get_item_info();
+                this.item_menu()
             }
             else if (menu === '2'){
-                this.display_item();
+                this.delivery_menu()
             }
-            else if (menu ==='3'){
-                this.search_by_item_code()
-            }
-            else if (menu === '4'){
+            else if (menu === '3'){
                 process.exit(1);
             }
+            else {
+                console.log("invalid input")
+            }
+            
+        }
+    }
+    delivery_menu(){
+        while(true){
+
+            let menu = (prompet("___menu__\n1.input delivery in system\n2.display\n3.search by delivery code\n4.exit\n"));
+                if (menu === '1'){
+                    this.get_delivery_info();
+                }
+                else if (menu === '2'){
+                    this.display_delivery();
+                }
+                else if (menu ==='3'){
+                    this.search_by_delivery_code()
+                }
+                else if (menu === '4'){
+                    process.exit(1);
+                }
+            }
+    }
+    item_menu(){
+        while(true){
+            let menu = (prompet("___menu__\n1.input item in system\n2.display\n3.search by item code\n4.exit\n"));
+                if (menu === '1'){
+                    this.get_item_info();
+                }
+                else if (menu === '2'){
+                    this.display_item();
+                }
+                else if (menu ==='3'){
+                    this.search_by_item_code()
+                }
+                else if (menu === '4'){
+                    process.exit(1);
+                }
         }
     }
     get_item_info(){
@@ -50,6 +86,28 @@ export class Interface{
         const item_code = prompet('enter item code to search:');
         const a = this.Logic.search_by_item_code(item_code);
         console.log(a);
+    }
+    get_delivery_info(){
+        const delivery_name = prompet('enter delivery name:');
+        const delivery_last_name = prompet('enter delivery last name:');
+        const delivery_nat_code = prompet('enter delivery nat code:');
+        const delivery_capacity = prompet('enter delivery capacity:');
+        const delivery_status = prompet('enter delivery status:(please enter a or d for active or deactive)');
+        
+        this.insert_delivery_info(delivery_name,delivery_last_name,delivery_nat_code,delivery_capacity,delivery_status)
+    }
+    insert_delivery_info(delivery_code,delivery_date,delivery_time,delivery_address,item_code){
+        const s = this.Logic.insert_delivery_info(delivery_code,delivery_date,delivery_time,delivery_address,item_code);
+        if (s == true){
+            console.log("seccesful.");
+            
+        }
+    }
+    display_delivery(){
+       const a =this.Logic.display_delivery();
+       console.log(a);
+       
+    
     }
     run(){
         this.menu()
