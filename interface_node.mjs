@@ -25,7 +25,7 @@ export class Interface{
     delivery_menu(){
         while(true){
 
-            let menu = (prompet("___menu__\n1.input delivery in system\n2.display\n3.search by delivery code\n4.exit\n"));
+            let menu = (prompet("___menu__\n1.input delivery in system\n2.display\n3.search by delivery code\n4.display all item send by delivery(not working) \n5.edit delivery\n6.exit\n"));
                 if (menu === '1'){
                     this.get_delivery_info();
                 }
@@ -36,6 +36,12 @@ export class Interface{
                     this.search_by_delivery_code()
                 }
                 else if (menu === '4'){
+                    this.display_all_item_send_by_delivery()
+                }
+                else if (menu === '5'){
+                    this.edit_delivery()
+                }
+                else if (menu === '5'){
                     process.exit(1);
                 }
             }
@@ -106,9 +112,25 @@ export class Interface{
     display_delivery(){
        const a =this.Logic.display_delivery();
        console.log(a);
-       
-    
     }
+    display_all_item_send_by_delivery(){
+        const delivery_code = prompet('enter delivery name  :');
+        const delivery_last_name = prompet('enter delivery last name  :');
+        const a = this.Logic.display_all_item_send_by_delivery(delivery_code,delivery_last_name);
+        console.log(a);
+    }
+    edit_delivery(){
+        const delivery_code = prompet('enter delivery code to edit:')
+        
+        const delivery_name = prompet('enter delivery name:')
+        const delivery_last_name = prompet('enter delivery last name:')
+        const delivery_nat_code = prompet('enter delivery nat code:')
+        const delivery_capacity = prompet('enter delivery capacity:')
+        const delivery_status = prompet('enter delivery status:(please enter a or d for active or deactive)')
+        
+        this.Logic.edit_delivery(delivery_code,delivery_name,delivery_last_name,delivery_nat_code,delivery_capacity,delivery_status)
+    }
+    
     run(){
         this.menu()
     }

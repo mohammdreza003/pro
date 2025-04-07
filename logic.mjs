@@ -16,5 +16,13 @@ export class Logic{
     }
     display_delivery(){
         return this.data_base.display_delivery()
+    };
+    display_all_item_send_by_delivery(delivery_code,delivery_last_name){
+        return this.data_base.display_all_item_send_by_delivery(delivery_code,delivery_last_name)
+    };
+    edit_delivery(delivery_code,delivery_name,delivery_last_name,delivery_nat_code,delivery_capacity,delivery_status)
+    
+    {
+        return this.data_base.edit_delivery(delivery_code,delivery_name,delivery_last_name,delivery_nat_code,delivery_capacity,delivery_status)
     }
 }

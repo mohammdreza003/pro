@@ -57,14 +57,12 @@ export class linkedlist{
         let temp = this.head;
        
         while (temp !== null ) {
-            if (data ===temp.data.item_code){
-                return console.log(temp.data);
+            if (temp.data && temp.data.code === data) {
+                return temp.data;
             }
-            temp =temp.next; 
-            
-
+            temp = temp.next; 
         }
-        return console.log('false');
+        return false;
     }
     display(){
         let temp = this.head;
