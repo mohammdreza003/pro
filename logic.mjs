@@ -24,5 +24,8 @@ export class Logic{
     
     {
         return this.data_base.edit_delivery(delivery_code,delivery_name,delivery_last_name,delivery_nat_code,delivery_capacity,delivery_status)
-    }
+    };
+    ss_delivered(){
+        return this.data_base.ss_delivered()
+    };
 }

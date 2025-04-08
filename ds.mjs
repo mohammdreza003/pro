@@ -32,26 +32,29 @@ export class linkedlist{
         }
         this.head = temp.next ;
     }
-    remove_by_data(data){
+    remove_by_data(data_code){
         let temp = this.head;
-        if (data === temp.data){
+        if (temp === null) return;
+    
+        if (temp.data.code === data_code){
             this.remove_first();
             return;
-
         }
+    
         while(temp.next !== null){
-            if (data === temp.next.data){
+            if (temp.next.data.code === data_code){
                 temp.next = temp.next.next;
                 return console.log('true');
             }
             temp = temp.next;
-            if(temp.next ===null){
-                this.end = temp
+            if(temp.next === null){
+                this.end = temp;
             }
+        }
+        return console.log('false');
+    }
+        
 
-        }   
-        return console.log('false')
-    } 
 
     search(data){
         let temp = this.head;
@@ -77,35 +80,3 @@ export class linkedlist{
         return result + "null"+ "\n"
     }
 }
-// const sll = new linkedlist();
-// sll.append(new Item_information(1,1,1,1,1,1,"f"));
-// sll.append(new Item_information(1,1,1,1,1,1,"f"));
-// // console.log(sll.search(1));
-// console.log(sll.display());
-// class Customarray{
-//     constructor(size){
-//         this.size = size;
-//         this.arr = Array(size).fill(null);
-//         this.count = 0;
-//         this.i = 0;
-        
-//     }
-//     insert(data){
-//         if (this.count<this.size){
-//             this.arr[this.count] = data;
-//             this.count+=1;
-//         }
-//         else{
-//             return;
-//         }
-//     }
-//     display(){
-//         for(let i=0;i<this.count;i++){
-//             process.stdout.write(this.arr[i] + '->');
-//         }
-//         return;
-//     }
-// }
-
-
-

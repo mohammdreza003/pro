@@ -4,6 +4,7 @@ import { linkedlist } from "./ds.mjs"
 import { Item_information } from "./information_node.mjs";
 import { Delivery_inf_node } from './delivery_information.mjs';
 import { Not_send_node } from './not_send_node.mjs';
+import { log } from 'console';
 export class Data_base{
     constructor(){
         this.sll_item = new linkedlist();
@@ -143,66 +144,80 @@ export class Data_base{
     search_delivery(delivery_code){
         return this.sll_delivery.search(delivery_code)
     }
-edit_delivery(delivery_code,delivery_name,delivery_last_name,delivery_nat_code,delivery_capacity,delivery_status){
-    const a = this.search_delivery(delivery_code);
-    if (a !== null && typeof a === 'object') {
-        if ('del_name' in a && 'del_last_name' in a && 'del_nat_code' in a && 'del_capacity' in a && 'del_status' in a) {
-            a.del_name = delivery_name;
-            a.del_last_name = delivery_last_name;
-            a.del_nat_code = delivery_nat_code;
-            a.del_capacity = delivery_capacity;
-            a.del_status = delivery_status;
-            return true;
+    edit_delivery(delivery_code,delivery_name,delivery_last_name,delivery_nat_code,delivery_capacity,delivery_status){
+        const a = this.search_delivery(delivery_code);
+        if (a !== null && typeof a === 'object') {
+            if ('del_name' in a && 'del_last_name' in a && 'del_nat_code' in a && 'del_capacity' in a && 'del_status' in a) {
+                a.del_name = delivery_name;
+                a.del_last_name = delivery_last_name;
+                a.del_nat_code = delivery_nat_code;
+                a.del_capacity = delivery_capacity;
+                a.del_status = delivery_status;
+                return true;
+            } else {
+                console.error(`Error: The object does not have the required properties.`);
+            }
         } else {
-            console.error(`Error: The object does not have the required properties.`);
+            console.error(`Error: Delivery with code ${delivery_code} not found or invalid object.`);
         }
-    } else {
-        console.error(`Error: Delivery with code ${delivery_code} not found or invalid object.`);
+
     }
+    invert_time(node){
+        const data1 = new Date(node.rehister_time);
+        const data2 = new Date(node.delivery_date);
 
-}
-invert_time(node){
-    const data1 = new Date(node.rehister_time);
-    const data2 = new Date(node.delivery_date);
-
-    const delta = data2 - data1;
-    const delta_day = delta / (1000 * 60 * 60 * 24); 
-    return delta_day;
-}
-system_for_delivery(){
-    let temp = this.sll_item.head;
-    while (temp !== null) {
-        this.invert_time(temp.data);
-        if (temp.data.category === 'F' && a<= 3){
-            this.sll_ss_delivery.append(temp.data);
-            this.sll_item.remove_by_data(temp.data.code);
+        const delta = data2 - data1;
+        const delta_day = delta / (1000 * 60 * 60 * 24); 
+        return delta_day;
+    }
+    system_for_delivery(){
+        let temp = this.sll_item.head;
+        while (temp !== null) {
+            let next = temp.next;  
+            let a = this.invert_time(temp.data);
+        
+            if (temp.data.category === 'F' && a <= 2) {
+                this.ss_insert(temp.data);
+                
+            }
+            else if (temp.data.category === 'C' && a <= 5) {
+                this.ss_insert(temp.data);
+            }
+            else if (temp.data.category === 'O' && a <= 10) {
+                this.ss_insert(temp.data);
+            }
+            else {
+                this.sll_not_delivery.append(temp.data);
+            }
+        
+             
+            temp = next;  
+        }
             
-        }
-        else if (temp.data.category === 'C' && a<= 5){
-            this.sll_ss_delivery.append(temp.data);
-            this.sll_item.remove_by_data(temp.data.code);
-        }
-        else if (temp.data.category === 'O' && a<= 10){
-            this.sll_ss_delivery.append(temp.data);
-            this.sll_item.remove_by_data(temp.data.code);
-        }
-        else {
-            this.sll_not_delivery.append(temp.data);
-            this.sll_item.remove_by_data(temp.data.code);
-        }
-        temp = temp.next;
+    }
+    ss_insert(item){
+        this.ss_delivered(item);
 
     }
-       
+    ss_display(){
+        return this.sll_ss_delivery.display()
+    }
+    ss_delivered(){
+        this.system_for_delivery();
+        // console.log(this.sll_delivery.display());
+        
+        return this.sll_not_delivery.display();
+    }
+        
 
-}
-}
+    }
 
-    
 
-    
-    
-    
-    
+        
+
+        
+        
+        
+        
 
 

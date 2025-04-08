@@ -25,7 +25,7 @@ export class Interface{
     delivery_menu(){
         while(true){
 
-            let menu = (prompet("___menu__\n1.input delivery in system\n2.display\n3.search by delivery code\n4.display all item send by delivery(not working) \n5.edit delivery\n6.exit\n"));
+            let menu = (prompet("___menu__\n1.input delivery in system\n2.display\n3.search by delivery code\n4.display all item send by delivery(not working) \n5.edit delivery\n6.display all seccse deliverd \n7.exit\n"));
                 if (menu === '1'){
                     this.get_delivery_info();
                 }
@@ -41,7 +41,10 @@ export class Interface{
                 else if (menu === '5'){
                     this.edit_delivery()
                 }
-                else if (menu === '5'){
+                else if (menu === '6'){
+                    this.ss_delivered()
+                }
+                else if (menu === '7'){
                     process.exit(1);
                 }
             }
@@ -129,6 +132,14 @@ export class Interface{
         const delivery_status = prompet('enter delivery status:(please enter a or d for active or deactive)')
         
         this.Logic.edit_delivery(delivery_code,delivery_name,delivery_last_name,delivery_nat_code,delivery_capacity,delivery_status)
+    }
+    ss_delivered(){
+    
+       const a = this.Logic.ss_delivered();
+       if (a!=null){
+            console.log(a);
+            
+       }
     }
     
     run(){
