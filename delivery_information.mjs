@@ -11,7 +11,6 @@ export class Delivery_inf_node{
         this.del_sent = new linkedlist();
     }
     send_item(code,item_code){
-        console.log("Adding item:", this.del_name, item_code);
         this.del_sent.append(new Delivery_inf_tahvil_node(code,item_code))
     }
     

@@ -60,7 +60,18 @@ export class linkedlist{
         let temp = this.head;
        
         while (temp !== null ) {
-            if (temp.data && temp.data.code === data) {
+            if (temp.data && temp.data.item_code === data) {
+                return temp.data;
+            }
+            temp = temp.next; 
+        }
+        return false;
+    }
+    search1(data){
+        let temp = this.head;
+       
+        while (temp !== null ) {
+            if (temp.data && temp.data.code == data) {
                 return temp.data;
             }
             temp = temp.next; 

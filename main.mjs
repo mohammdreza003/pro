@@ -9,6 +9,6 @@ const intre = new Interface(log);
 // read_file();
 await dbs.read_file_item();
 await dbs.read_file_delivery();
-// await dbs.read_file_delivery_parcel();
+await dbs.read_file_delivery_parcel();
 await dbs.read_file_not_delivery();
 intre.run();

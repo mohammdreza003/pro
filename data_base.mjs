@@ -90,14 +90,11 @@ export class Data_base{
     
             lines.forEach(line => {
                 let d = line.trim().split(',');
-                let a = this.sll_delivery.search(d[0])
+                let a = this.sll_delivery.search1(d[0])
                 if (a!== null){ {
                     if (typeof a.send_item === 'function') {
                         a.send_item(d[0], d[1]);
-                    } else {
-                        console.error(`Error: 'send_item' method not found on the object returned by search.`);
-                    }
-                    console.log(a.display());
+                    } 
 
                 }
             }}
@@ -106,6 +103,7 @@ export class Data_base{
             console.error(`Error reading file: ${err}`);
         }
     }
+    
     async read_file_not_delivery(){
         try {
             let data = await fs.readFile('./test_files/not_delivered_parcel.txt', 'utf8');
@@ -128,9 +126,9 @@ export class Data_base{
         
                 
     
-    insert_delivery_info(delivery_code,delivery_date,delivery_time,delivery_address,item_code){
+    insert_delivery_info(delivery_name,delivery_last_name,delivery_nat_code,delivery_capacity,delivery_status){
         this.delivery_code +=1;
-        const item = new Delivery_inf_node(delivery_code,delivery_date,delivery_time,delivery_address,item_code , delivery_code)
+        const item = new Delivery_inf_node(delivery_name , delivery_last_name , delivery_nat_code , delivery_capacity , delivery_status , this.delivery_code)
         this.sll_delivery.append(item);
         return true;
     }
@@ -142,7 +140,7 @@ export class Data_base{
         return this.sll_delivery.display()
     }
     search_delivery(delivery_code){
-        return this.sll_delivery.search(delivery_code)
+        return this.sll_delivery.search1(delivery_code)
     }
     edit_delivery(delivery_code,delivery_name,delivery_last_name,delivery_nat_code,delivery_capacity,delivery_status){
         const a = this.search_delivery(delivery_code);
@@ -162,37 +160,49 @@ export class Data_base{
         }
 
     }
-    invert_time(node){
+    
+    invert_time(node) {
+        if (!node.register_time || !node.delivery_date) {
+            return 0;  
+        }
+    
         const data1 = new Date(node.rehister_time);
         const data2 = new Date(node.delivery_date);
-
+    
+        
+    
         const delta = data2 - data1;
-        const delta_day = delta / (1000 * 60 * 60 * 24); 
-        return delta_day;
+        const delta_day = delta / (1000 * 60 * 60 * 24);
+    
+        return Number(delta_day);
+    
+        
     }
     system_for_delivery(){
+        
         let temp = this.sll_item.head;
+
         while (temp !== null) {
             let next = temp.next;  
             let a = this.invert_time(temp.data);
-        
-            if (temp.data.category === 'F' && a <= 2) {
+                
+            if (temp.data.category == 'F' && a >= 2) {
                 this.ss_insert(temp.data);
                 
             }
-            else if (temp.data.category === 'C' && a <= 5) {
+            else if (temp.data.category == 'C' && a >= 5) {
                 this.ss_insert(temp.data);
             }
-            else if (temp.data.category === 'O' && a <= 10) {
+            else if (temp.data.category =='O' && a >= 10) {
                 this.ss_insert(temp.data);
             }
-            else {
-                this.sll_not_delivery.append(temp.data);
-            }
+           
+            
         
              
             temp = next;  
         }
+
             
     }
     ss_insert(item){
@@ -201,14 +211,19 @@ export class Data_base{
     }
     ss_display(){
         return this.sll_ss_delivery.display()
+
     }
     ss_delivered(){
         this.system_for_delivery();
-        // console.log(this.sll_delivery.display());
-        
-        return this.sll_not_delivery.display();
+        // this.ss_display()
+        // return this.sll_not_delivery.display();
     }
-        
+    display_all_item_send_by_delivery(del_code){
+        const a = this.search_delivery(del_code)
+        if (a!==null){
+            return a.display();
+        }
+    }
 
     }
 

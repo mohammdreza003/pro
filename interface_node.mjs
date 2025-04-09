@@ -25,7 +25,7 @@ export class Interface{
     delivery_menu(){
         while(true){
 
-            let menu = (prompet("___menu__\n1.input delivery in system\n2.display\n3.search by delivery code\n4.display all item send by delivery(not working) \n5.edit delivery\n6.display all seccse deliverd \n7.exit\n"));
+            let menu = (prompet("___menu__\n1.input delivery in system\n2.display\n3.search by delivery code\n4.display all item send by delivery \n5.edit delivery\n6.display all seccse deliverd \n7.exit\n"));
                 if (menu === '1'){
                     this.get_delivery_info();
                 }
@@ -117,9 +117,8 @@ export class Interface{
        console.log(a);
     }
     display_all_item_send_by_delivery(){
-        const delivery_code = prompet('enter delivery name  :');
-        const delivery_last_name = prompet('enter delivery last name  :');
-        const a = this.Logic.display_all_item_send_by_delivery(delivery_code,delivery_last_name);
+        const del_cod = prompet('enter code:')
+        const a = this.Logic.display_all_item_send_by_delivery(del_cod);
         console.log(a);
     }
     edit_delivery(){
